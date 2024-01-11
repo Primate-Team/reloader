@@ -13,8 +13,14 @@ public final class PrimateReloader extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        try {
+            modifies = getPlugins();
+        } catch (Exception e) {
+            getLogger().log(Level.SEVERE, e.getMessage());
+            getServer().getPluginManager().disablePlugin(this);
+        }
 
+        getServer().getScheduler().runTaskTimer(this, new CheckTask(), 0, 15 * 15);
     }
 
     /**
