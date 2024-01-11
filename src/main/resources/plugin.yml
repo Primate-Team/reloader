@@ -1,0 +1,4 @@
+name: PrimateReloader
+version: '${project.version}'
+main: ru.samsonium.primate.reloader.PrimateReloader
+api-version: '1.20'
