@@ -17,9 +17,6 @@ public final class PrimateReloader extends JavaPlugin {
 
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
     /**
      * Get map of files and it's last modified time
      * @return Map of files with last modified time
