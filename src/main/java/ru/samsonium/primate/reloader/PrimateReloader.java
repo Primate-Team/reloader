@@ -50,4 +50,20 @@ public final class PrimateReloader extends JavaPlugin {
     public static PrimateReloader get() {
         return getPlugin(PrimateReloader.class);
     }
+
+    /**
+     * Modified map getter
+     * @return Plugins jars map with its last modified time
+     */
+    public Map<String, Long> getModifies() {
+        return modifies;
+    }
+
+    /**
+     * Modified map setter
+     * @param modifies New value
+     */
+    public void setModifies(Map<String, Long> modifies) {
+        this.modifies = modifies;
+    }
 }
