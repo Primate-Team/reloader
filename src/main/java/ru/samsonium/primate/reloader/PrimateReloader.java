@@ -26,7 +26,7 @@ public final class PrimateReloader extends JavaPlugin {
     /**
      * Get map of files and it's last modified time
      * @return Map of files with last modified time
-     * @throws Exception if got an error on reading list files
+     * @throws Exception if got an error while reading list files
      */
     public Map<String, Long> getPlugins() throws Exception {
         File pluginsFolder = getServer().getPluginsFolder();
@@ -35,15 +35,11 @@ public final class PrimateReloader extends JavaPlugin {
             throw new Exception("Got an error on list files");
 
         Map<String, Long> result = new HashMap<>();
-        for (File pluginDir : fileList) {
-            if (!pluginDir.isDirectory()) continue;
+        for (File jar : fileList) {
+            if (!jar.isFile() || !jar.getName().endsWith(".jar"))
+                continue;
 
-            String name = pluginDir.getName();
-            Plugin plugin = getServer().getPluginManager().getPlugin(name);
-            if (plugin == null) continue;
-
-            File pluginJar = new File(plugin.getClass().getProtectionDomain().getCodeSource().getLocation().toURI());
-            result.put(pluginDir.getName(), pluginJar.lastModified());
+            result.put(jar.getName(), jar.lastModified());
         }
 
         return result;
